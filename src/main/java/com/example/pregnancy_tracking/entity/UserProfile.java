@@ -3,7 +3,7 @@ package com.example.pregnancy_tracking.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "UserProfiles") // Đảm bảo đúng với tên bảng
+@Table(name = "UserProfiles")
 public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "PregnancyRecords")
 @Getter
 @Setter
-public class PregnancyRecord {  // ĐÚNG: Không có "s"
+public class PregnancyRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recordId;
@@ -18,13 +18,18 @@ public class PregnancyRecord {  // ĐÚNG: Không có "s"
     @JoinColumn(name = "fetus_id", nullable = false)
     private Fetus fetus;
 
+    @ManyToOne
+    @JoinColumn(name = "pregnancy_id", nullable = false)
+    private Pregnancy pregnancy;
+
+
     private Integer week;
     private Double fetalWeight;
     private Double crownHeelLength;
     private Double headCircumference;
 
     @Enumerated(EnumType.STRING)
-    private PregnancyRecordStatus status;  // Đảm bảo enum này tồn tại
+    private PregnancyRecordStatus status;
 
     private LocalDateTime createdAt;
 

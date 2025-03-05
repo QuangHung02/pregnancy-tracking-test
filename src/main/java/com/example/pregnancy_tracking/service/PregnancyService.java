@@ -20,6 +20,8 @@ public class PregnancyService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PregnancyRecordService pregnancyRecordService;
 
     public Pregnancy createPregnancy(PregnancyDTO pregnancyDTO) {
         if (pregnancyDTO.getUserId() == null) {
@@ -103,7 +105,11 @@ public class PregnancyService {
         pregnancy.setGestationalDays(pregnancyDTO.getGestationalDays());
         pregnancy.setLastUpdatedAt(LocalDateTime.now());
 
-        return pregnancyRepository.save(pregnancy);
+        pregnancyRepository.save(pregnancy);
+
+        pregnancyRecordService.updateRecordsForPregnancy(pregnancyId, pregnancy.getGestationalWeeks());
+
+        return pregnancy;
     }
 
     @Autowired
@@ -133,5 +139,8 @@ public class PregnancyService {
 
         return pregnancyRepository.save(pregnancy);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e25f3d4 (Hung)
 }
