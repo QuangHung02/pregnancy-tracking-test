@@ -139,8 +139,5 @@ public class PregnancyService {
 
         return pregnancyRepository.save(pregnancy);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> e25f3d4 (Hung)
 }
