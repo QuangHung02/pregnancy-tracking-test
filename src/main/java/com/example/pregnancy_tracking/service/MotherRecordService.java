@@ -18,7 +18,7 @@ public class MotherRecordService {
     private StandardService standardService;
 
     public MotherRecord createRecord(MotherRecord record) {
-        if (record.getMotherHeight() != null && record.getMotherHeight() > 0) {
+        if (record.getMotherHeight() != null && record.getMotherHeight() > 0 && record.getMotherWeight() != null) {
             double heightInMeters = record.getMotherHeight() / 100.0;
             double bmi = record.getMotherWeight() / (heightInMeters * heightInMeters);
             record.setMotherBmi(Math.round(bmi * 100.0) / 100.0);
