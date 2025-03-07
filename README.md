@@ -42,12 +42,6 @@ mvn clean install
 
 mvn test
 
-✅ 2. Run only validation tests
-
-If your tests are tagged with a specific group, you can run them separately:
-
-mvn test -Dgroups=validation
-
 📂 5. Test Directory Structure
 
 /src/test/java/com/example/pregnancy_tracking/
