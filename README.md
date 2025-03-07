@@ -68,79 +68,92 @@ mvn test -Dgroups=validation
 
 A sample JUnit 5 + Spring Boot Validation Test for validating a PregnancyDTO:
 
-package com.example.pregnancy_tracking.service;
+    package com.example.pregnancy_tracking.service;
 
-import com.example.pregnancy_tracking.dto.PregnancyDTO;
+    import com.example.pregnancy_tracking.dto.PregnancyDTO;
 
-import com.example.pregnancy_tracking.entity.Pregnancy;
+    import com.example.pregnancy_tracking.entity.Pregnancy;
 
-import com.example.pregnancy_tracking.entity.PregnancyStatus;
+    import com.example.pregnancy_tracking.entity.PregnancyStatus;
 
-import com.example.pregnancy_tracking.entity.User;
+    import com.example.pregnancy_tracking.entity.User;
 
-import com.example.pregnancy_tracking.repository.PregnancyRepository;
+    import com.example.pregnancy_tracking.repository.PregnancyRepository;
 
-import com.example.pregnancy_tracking.repository.UserRepository;
+    import com.example.pregnancy_tracking.repository.UserRepository;
 
-import org.junit.jupiter.api.BeforeEach;
+    import org.junit.jupiter.api.BeforeEach;
 
-import org.junit.jupiter.api.Test;
+    import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.extension.ExtendWith;
+    import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.mockito.InjectMocks;
+    import org.mockito.InjectMocks;
 
-import org.mockito.Mock;
+    import org.mockito.Mock;
 
-import org.mockito.junit.jupiter.MockitoExtension;
+    import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDate;
+    import java.time.LocalDate;
 
-import java.util.Optional;
+    import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+    import static org.junit.jupiter.api.Assertions.*;
 
-import static org.mockito.ArgumentMatchers.any;
+    import static org.mockito.ArgumentMatchers.any;
 
-import static org.mockito.Mockito.*;
+    import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+    @ExtendWith(MockitoExtension.class)
 
-class CreatePregnancyServiceTest {
+    class CreatePregnancyServiceTest {
+ 
+       @Mock
+       private UserRepository userRepository;
+       
+       @Mock
+       private PregnancyRepository pregnancyRepository;
+       
+       @InjectMocks
+       private PregnancyService pregnancyService;
+   
+       private User mockUser;
+       private PregnancyDTO pregnancyDTO;
+   
+       @BeforeEach
+       void setUp() {
+           mockUser = new User();
+           mockUser.setId(1L);
+           mockUser.setTotalPregnancies(2);
+   
+           pregnancyDTO = new PregnancyDTO();
+           pregnancyDTO.setUserId(1L);
+           pregnancyDTO.setExamDate(LocalDate.of(2024, 3, 1));
+           pregnancyDTO.setGestationalWeeks(10);
+           pregnancyDTO.setGestationalDays(5);
+       }
 
-    @Mock
-    private UserRepository userRepository;
-    
-    @Mock
-    private PregnancyRepository pregnancyRepository;
-    
-    @InjectMocks
-    private PregnancyService pregnancyService;
-
-    private User mockUser;
-    private PregnancyDTO pregnancyDTO;
-
-    @BeforeEach
-    void setUp() {
-        mockUser = new User();
-        mockUser.setId(1L);
-        mockUser.setTotalPregnancies(2);
-
-        pregnancyDTO = new PregnancyDTO();
-        pregnancyDTO.setUserId(1L);
-        pregnancyDTO.setExamDate(LocalDate.of(2024, 3, 1));
-        pregnancyDTO.setGestationalWeeks(10);
-        pregnancyDTO.setGestationalDays(5);
+       @Test
+       void createPregnancy_ShouldThrowException_WhenUserIdIsNull() {
+           pregnancyDTO.setUserId(null);
+           
+           NullPointerException exception = assertThrows(NullPointerException.class, () -> pregnancyService.createPregnancy(pregnancyDTO));
+           assertEquals("User ID cannot be null", exception.getMessage());
+       }
     }
 
-    @Test
-    void createPregnancy_ShouldThrowException_WhenUserIdIsNull() {
-        pregnancyDTO.setUserId(null);
-        
-        NullPointerException exception = assertThrows(NullPointerException.class, () -> pregnancyService.createPregnancy(pregnancyDTO));
-        assertEquals("User ID cannot be null", exception.getMessage());
-    }
-}
+🛠 7. Debugging & Troubleshooting
+Common Issues:
+
+javax.validation.ConstraintViolationException
+
+No validator could be found
+
+Solution:
+
+Check field constraints (@NotNull, @Size)
+
+Ensure spring-boot-starter-validation is included in pom.xml
 
 🎯 8. Conclusion
 
