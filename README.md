@@ -49,12 +49,19 @@ mvn test
   ├── controller/        # Controller layer tests
   
   │    ├── PregnancyControllerTest.java
+
+  │    ├── MotherRecordControllerTest.java
+
   
   ├── service/           # Service layer tests
   
   │    ├── CreatePregnancyServiceTest.java
   
   │    ├── UpdatePregnancyServiceTest.java
+
+  │    ├── CheckMotherHealthServiceTest.java
+
+  │    ├── CreateMotherRecordServiceTest.java
   
 📊 6. Test Examples
 
