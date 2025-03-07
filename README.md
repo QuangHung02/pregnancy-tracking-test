@@ -283,11 +283,11 @@ With this level of coverage, the createPregnancy functionality is well-tested an
 
 🚀 10. Test Coverage Explanation for UpdatePregnancyServiceTest
 
-Overview
+1. Overview
 
 The UpdatePregnancyServiceTest class provides comprehensive test coverage for the updatePregnancy method in PregnancyService. The test cases validate both positive and negative scenarios, ensuring that the method behaves correctly in different situations.
 
-Tested Scenarios
+2. Tested Scenarios
 
 ✅ Successful Pregnancy Update
 
@@ -331,7 +331,7 @@ Repository Save Failures
 
 updatePregnancy_ShouldThrowException_WhenSaveFails(): Ensures the service throws an exception when saving the updated pregnancy fails.
 
-Test Coverage Summary
+3. Test Coverage Summary
 
 The test suite effectively covers:
 
