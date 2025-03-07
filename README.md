@@ -141,6 +141,7 @@ class CreatePregnancyServiceTest {
         assertEquals("User ID cannot be null", exception.getMessage());
     }
 }
+
 🎯 8. Conclusion
 
 This README provides a clear guide to setting up and running field validation tests in your Spring Boot project. If any issues arise, check the logs or reach out to the development team. 🚀
